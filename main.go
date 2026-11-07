@@ -1,7 +1,9 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"os"
 	"strings"
 
 	"github.com/gocolly/colly/v2"
@@ -19,7 +21,7 @@ func cleanParagraph(element *colly.HTMLElement) string {
 	// Remove Wikipedia's inline citation elements before extracting text.
 	paragraph.Find("sup.reference").Remove()
 
-	//Field separates text at whitespace. Join rebuilds it with single spaces.
+	// Fields separates text at whitespace. Join rebuilds it with single spaces.
 	return strings.Join(strings.Fields(paragraph.Text()), " ")
 }
 
@@ -40,7 +42,6 @@ func main() {
 
 	collector.OnRequest(func(request *colly.Request) {
 		fmt.Println("Visiting:", request.URL)
-		fmt.Println("User-Agent:", request.Headers.Get("User-Agent"))
 	})
 
 	collector.OnResponse(func(response *colly.Response) {
@@ -75,6 +76,27 @@ func main() {
 		fmt.Println("Article is missing required data")
 		return
 	}
+
+	if err := os.MkdirAll("output", 0755); err != nil {
+		fmt.Println("Could not create output directory:", err)
+		return
+	}
+
+	outputFile, err := os.Create("output/wikipedia_articles.jl")
+	if err != nil {
+		fmt.Println("Could not create output file:", err)
+		return
+	}
+	defer outputFile.Close()
+
+	encoder := json.NewEncoder(outputFile)
+
+	if err := encoder.Encode(article); err != nil {
+		fmt.Println("Could not write article:", err)
+		return
+	}
+
+	fmt.Println("Wrote article to output/wikipedia_articles.jl")
 
 	fmt.Println("Paragraphs extracted:", len(paragraphs))
 	fmt.Println("Text characters:", len(article.Text))

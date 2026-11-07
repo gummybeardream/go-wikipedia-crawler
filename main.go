@@ -1,29 +1,12 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"os"
 	"strings"
 
 	"github.com/gocolly/colly/v2"
 )
-
-type Article struct {
-	Title string `json:"title"`
-	URL   string `json:"url"`
-	Text  string `json:"text"`
-}
-
-func cleanParagraph(element *colly.HTMLElement) string {
-	paragraph := element.DOM.Clone()
-
-	// Remove Wikipedia's inline citation elements before extracting text.
-	paragraph.Find("sup.reference").Remove()
-
-	// Fields separates text at whitespace. Join rebuilds it with single spaces.
-	return strings.Join(strings.Fields(paragraph.Text()), " ")
-}
 
 func main() {
 	// Wikipedia URLs for topics of interest.
@@ -60,7 +43,7 @@ func main() {
 	})
 
 	collector.OnHTML("#mw-content-text .mw-parser-output p", func(element *colly.HTMLElement) {
-		paragraph := cleanParagraph(element)
+		paragraph := cleanParagraph(element.DOM)
 
 		if paragraph != "" {
 			paragraphs = append(paragraphs, paragraph)
@@ -89,9 +72,7 @@ func main() {
 	}
 	defer outputFile.Close()
 
-	encoder := json.NewEncoder(outputFile)
-
-	if err := encoder.Encode(article); err != nil {
+	if err := writeArticle(outputFile, article); err != nil {
 		fmt.Println("Could not write article:", err)
 		return
 	}

@@ -42,12 +42,20 @@ git clone https://github.com/gummybeardream/go-wikipedia-crawler.git
 cd go-wikipedia-crawler
 ```
 
-## GenAI Tools 
+Run the program:
+
+```bash
+go run .
+```
+
+The generated JSON Lines file is saved at `output/wikipedia_articles.jl`.
+
+## GenAI Tools
 I used OpenAI Codex as a programming tutor and review assistant during this project. It helped to:
 
 * break the assignment into milestones
 * explain Go and Colly concepts
-* interpret compiler and HTTP errors 
+* interpret compiler and HTTP errors
 * review code and JSON Lines output
 
 I reviewed, entered, tested, and revised the project code and documentation. AI-generated suggestions were validated with Go formatting, tests, vetting, benchmarks, and manual application runs.

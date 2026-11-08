@@ -6,13 +6,17 @@ A technology firm has decided to use a Go web crawler program to scrape Wikipedi
 
 ## Project Objective
 
-This project is a Go concurrent web crawler and scraper that works with the Colly framework to extract text from Wikipedia articles and export structured data in JSON Lines format.
-
-The current implementation processes pages sequentially; controlled concurrent processing will be added after measuring the sequential baseline.
+This project is a Go concurrent web crawler and scraper that works with the Colly framework to extract text from Wikipedia articles and export structured data in JSON Lines format. The crawler uses controlled concurrency to process multiple pages while limiting the number of simultaneous requests. 
 
 ## Development Status
 
-The current version sequentially processes all ten required Wikipedia articles, extracts and cleans their paragraph text, and writes one JSON object per article to a JSON Lines file. Unit tests cover paragraph cleaning and JSON encoding. The application records crawl activity, failures, and sequential processing time. Controlled concurrent processing will be added in the next development stage.
+The current version sequentially processes all ten required Wikipedia articles, extracts and cleans their paragraph text, and writes one JSON object per article to a JSON Lines file. Unit tests cover paragraph cleaning and JSON encoding. Logging records crawl activity, failures, output counts, and processing time. Concurrent access is limited to three requests, and race-detector checks found no data races.
+
+## Concurrency
+
+The program starts one goroutine for each target URL and uses a semaphore to limit processing to three simultaneous requests. A `sync.WaitGroup` ensures that the program waits for all scraping tasks to finish. Workers send results through a buffered channel rather than modifying the shared result slice directly.
+
+Because concurrent requests may finish in any order, each result retains its original URL index. The main goroutine restores the input order before writing the JSON Lines file. JSON writing remains sequential to avoid concurrent file writes.
 
 ## Logging
 
@@ -56,13 +60,20 @@ The generated JSON Lines file contains 10 records and is saved at `output/wikipe
 
 ## Testing
 
-Run the automated unit tests:
+Run the unit tests:
 
 ```bash
 go test ./...
 ```
 
 The unit tests use synthetic data and do not access Wikipedia. They verify paragraph cleaning, whitespace normalization, and JSON Lines encoding.
+
+Run the race detector:
+
+```bash
+go test -race ./...
+go run -race .
+``` 
 
 ## Performance
 
@@ -71,8 +82,9 @@ The sequential crawler successfully processed all ten target pages.
 | Processing mode | Attempted | Successful | Failed | Crawl time |
 |---|---:|---:|---:|---:|
 | Sequential | 10 | 10 | 0 | 1.192 seconds |
+| Concurrent | 10 | 10 | 0 | 0.667 seconds |
 
-Processing time can vary because of network conditions, Wikipedia response times, and caching. The sequential result will be compared with the concurrent implementation.
+In these runs, controlled concurrency reduced crawl time from 1.192 seconds to 0.667 seconds, an approximate speedup of 1.79 times and a time reduction of 44 percent. Results can vary because of network conditions, Wikipedia response times, caching, and normal system activity.
 
 ## GenAI Tools
 I used OpenAI Codex as a programming tutor and review assistant during this project. It helped to:

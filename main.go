@@ -5,8 +5,17 @@ import (
 	"io"
 	"log"
 	"os"
+	"sync"
 	"time"
 )
+
+const maxConcurrentRequests = 3
+
+type scrapeResult struct {
+	index   int
+	article Article
+	err     error
+}
 
 func main() {
 	// Wikipedia URLs for topics of interest.
@@ -40,24 +49,65 @@ func main() {
 		log.LstdFlags,
 	)
 
-	var articles []Article
+	results := make(chan scrapeResult, len(urls))
+	semaphore := make(chan struct{}, maxConcurrentRequests)
 
-	logger.Printf("starting sequential crawl of %d URLs", len(urls))
+	var waitGroup sync.WaitGroup
+
+	logger.Printf("starting concurrent crawl of %d URLs with a limit of %d requests",
+		len(urls),
+		maxConcurrentRequests,
+	)
 	crawlStart := time.Now()
 
 	failedCount := 0
-	for _, url := range urls {
-		article, err := scrapeArticle(url, logger)
-		if err != nil {
-			logger.Printf("could not scrape article: %v", err)
+	for index, url := range urls {
+		waitGroup.Add(1)
+
+		go func(index int, url string) {
+			defer waitGroup.Done()
+
+			semaphore <- struct{}{}
+			defer func() {
+				<-semaphore
+			}()
+
+			article, err := scrapeArticle(url, logger)
+
+			results <- scrapeResult{
+				index:   index,
+				article: article,
+				err:     err,
+			}
+		}(index, url)
+	}
+
+	waitGroup.Wait()
+	close(results)
+
+	crawlDuration := time.Since(crawlStart)
+
+	orderedArticles := make([]Article, len(urls))
+	successful := make([]bool, len(urls))
+
+	for result := range results {
+		if result.err != nil {
+			logger.Printf("could not scrape article: %v", result.err)
 			failedCount++
 			continue
 		}
 
-		articles = append(articles, article)
+		orderedArticles[result.index] = result.article
+		successful[result.index] = true
 	}
 
-	crawlDuration := time.Since(crawlStart)
+	articles := make([]Article, 0, len(urls))
+
+	for index, article := range orderedArticles {
+		if successful[index] {
+			articles = append(articles, article)
+		}
+	}
 
 	if len(articles) == 0 {
 		logger.Printf("no articles were scraped successfully")
@@ -89,7 +139,7 @@ func main() {
 	)
 
 	logger.Printf(
-		"sequential crawl complete: %d succeeded, %d failed, crawl time %s",
+		"concurrent crawl complete: %d succeeded, %d failed, crawl time %s",
 		len(articles),
 		failedCount,
 		crawlDuration,

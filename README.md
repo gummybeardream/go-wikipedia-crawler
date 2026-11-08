@@ -84,7 +84,19 @@ The sequential crawler successfully processed all ten target pages.
 | Sequential | 10 | 10 | 0 | 1.192 seconds |
 | Concurrent | 10 | 10 | 0 | 0.655 seconds |
 
-In these runs, controlled concurrency reduced crawl time from 1.192 seconds to 0.667 seconds, an approximate speedup of 1.82 times and a time reduction of 45 percent. Results can vary because of network conditions, Wikipedia response times, caching, and normal system activity.
+In these runs, controlled concurrency reduced crawl time from 1.192 seconds to 0.655 seconds, an approximate speedup of 1.82 times and a time reduction of 45 percent. Results can vary because of network conditions, Wikipedia response times, caching, and normal system activity.
+
+### Software Metrics
+
+The JSON Lines output contains 10 records and is approximately 248 KiB. Unit-test coverage is 6.1 percent. Tests focus on the deterministic paragraph-cleaning and JSON-encoding components. The live crawler is also checked through manual application runs and Go's race detector.
+
+### Paragraph-Cleaning Benchmark
+
+The benchmark uses synthetic HTML and measures citation removal and whitespace normalization without making network requests. It was run five times on an Apple M1 using:
+
+```bash
+go test -bench=BenchmarkCleanParagraph -benchmem -count=5
+```
 
 ## GenAI Tools
 I used OpenAI Codex as a programming tutor and review assistant during this project. It helped to:
@@ -94,7 +106,7 @@ I used OpenAI Codex as a programming tutor and review assistant during this proj
 * interpret compiler and HTTP errors
 * review code and JSON Lines output
 
-I reviewed, entered, tested, and revised the project code and documentation. AI-generated suggestions were validated with Go formatting, tests, vetting, benchmarks, and manual application runs.
+I reviewed, entered, tested, and revised the project code and documentation. AI-generated suggestions were validated with Go formatting, unit tests, race detection, vetting, benchmarks, and manual application runs.
 
 ## License
 

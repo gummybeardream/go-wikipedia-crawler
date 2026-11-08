@@ -1,33 +1,33 @@
-2026/11/07 22:43:55 starting concurrent crawl of 10 URLs with a limit of 3 requests
-2026/11/07 22:43:55 visiting https://en.wikipedia.org/wiki/Android_(robot)
-2026/11/07 22:43:55 visiting https://en.wikipedia.org/wiki/Intelligent_agent
-2026/11/07 22:43:55 visiting https://en.wikipedia.org/wiki/Robotic_process_automation
-2026/11/07 22:43:56 received status 200 for https://en.wikipedia.org/wiki/Android_(robot)
-2026/11/07 22:43:56 scraped article "Android (robot)"
-2026/11/07 22:43:56 visiting https://en.wikipedia.org/wiki/Robot
-2026/11/07 22:43:56 received status 200 for https://en.wikipedia.org/wiki/Intelligent_agent
-2026/11/07 22:43:56 scraped article "Intelligent agent"
-2026/11/07 22:43:56 visiting https://en.wikipedia.org/wiki/Robotics
-2026/11/07 22:43:56 received status 200 for https://en.wikipedia.org/wiki/Robotic_process_automation
-2026/11/07 22:43:56 scraped article "Robotic process automation"
-2026/11/07 22:43:56 visiting https://en.wikipedia.org/wiki/Chatbot
-2026/11/07 22:43:56 received status 200 for https://en.wikipedia.org/wiki/Robot
-2026/11/07 22:43:56 scraped article "Robot"
-2026/11/07 22:43:56 visiting https://en.wikipedia.org/wiki/Software_agent
-2026/11/07 22:43:56 received status 200 for https://en.wikipedia.org/wiki/Robotics
-2026/11/07 22:43:56 scraped article "Robotics"
-2026/11/07 22:43:56 visiting https://en.wikipedia.org/wiki/Applications_of_artificial_intelligence
-2026/11/07 22:43:56 received status 200 for https://en.wikipedia.org/wiki/Chatbot
-2026/11/07 22:43:56 scraped article "Chatbot"
-2026/11/07 22:43:56 visiting https://en.wikipedia.org/wiki/Reinforcement_learning
-2026/11/07 22:43:56 received status 200 for https://en.wikipedia.org/wiki/Software_agent
-2026/11/07 22:43:56 scraped article "Software agent"
-2026/11/07 22:43:56 visiting https://en.wikipedia.org/wiki/Robot_Operating_System
-2026/11/07 22:43:56 received status 200 for https://en.wikipedia.org/wiki/Applications_of_artificial_intelligence
-2026/11/07 22:43:56 received status 200 for https://en.wikipedia.org/wiki/Reinforcement_learning
-2026/11/07 22:43:56 scraped article "Applications of artificial intelligence"
-2026/11/07 22:43:56 scraped article "Reinforcement learning"
-2026/11/07 22:43:56 received status 200 for https://en.wikipedia.org/wiki/Robot_Operating_System
-2026/11/07 22:43:56 scraped article "Robot Operating System"
-2026/11/07 22:43:56 wrote 10 of 10 articles to output/wikipedia_articles.jl
-2026/11/07 22:43:56 concurrent crawl complete: 10 succeeded, 0 failed, crawl time 655.348625ms
+2026/11/08 13:46:50 starting concurrent crawl of 10 URLs with a limit of 3 requests
+2026/11/08 13:46:50 visiting https://en.wikipedia.org/wiki/Android_(robot)
+2026/11/08 13:46:50 visiting https://en.wikipedia.org/wiki/Robotic_process_automation
+2026/11/08 13:46:50 visiting https://en.wikipedia.org/wiki/Intelligent_agent
+2026/11/08 13:46:51 received status 200 for https://en.wikipedia.org/wiki/Intelligent_agent
+2026/11/08 13:46:51 scraped article "Intelligent agent"
+2026/11/08 13:46:51 visiting https://en.wikipedia.org/wiki/Robot
+2026/11/08 13:46:51 received status 200 for https://en.wikipedia.org/wiki/Android_(robot)
+2026/11/08 13:46:51 scraped article "Android (robot)"
+2026/11/08 13:46:51 visiting https://en.wikipedia.org/wiki/Robotics
+2026/11/08 13:46:51 received status 200 for https://en.wikipedia.org/wiki/Robotic_process_automation
+2026/11/08 13:46:51 scraped article "Robotic process automation"
+2026/11/08 13:46:51 visiting https://en.wikipedia.org/wiki/Chatbot
+2026/11/08 13:46:51 received status 200 for https://en.wikipedia.org/wiki/Robot
+2026/11/08 13:46:51 scraped article "Robot"
+2026/11/08 13:46:51 visiting https://en.wikipedia.org/wiki/Robot_Operating_System
+2026/11/08 13:46:51 received status 200 for https://en.wikipedia.org/wiki/Robotics
+2026/11/08 13:46:51 scraped article "Robotics"
+2026/11/08 13:46:51 visiting https://en.wikipedia.org/wiki/Software_agent
+2026/11/08 13:46:51 received status 200 for https://en.wikipedia.org/wiki/Software_agent
+2026/11/08 13:46:51 scraped article "Software agent"
+2026/11/08 13:46:51 visiting https://en.wikipedia.org/wiki/Applications_of_artificial_intelligence
+2026/11/08 13:46:51 received status 200 for https://en.wikipedia.org/wiki/Applications_of_artificial_intelligence
+2026/11/08 13:46:51 scraped article "Applications of artificial intelligence"
+2026/11/08 13:46:51 visiting https://en.wikipedia.org/wiki/Reinforcement_learning
+2026/11/08 13:46:51 received status 200 for https://en.wikipedia.org/wiki/Chatbot
+2026/11/08 13:46:51 scraped article "Chatbot"
+2026/11/08 13:46:51 received status 200 for https://en.wikipedia.org/wiki/Robot_Operating_System
+2026/11/08 13:46:51 scraped article "Robot Operating System"
+2026/11/08 13:46:51 received status 200 for https://en.wikipedia.org/wiki/Reinforcement_learning
+2026/11/08 13:46:51 scraped article "Reinforcement learning"
+2026/11/08 13:46:51 wrote 10 of 10 articles to output/wikipedia_articles.jl
+2026/11/08 13:46:51 concurrent crawl complete: 10 succeeded, 0 failed, crawl time 1.000478708s

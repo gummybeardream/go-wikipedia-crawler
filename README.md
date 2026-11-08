@@ -107,6 +107,20 @@ The median result from five runs was:
 
 The benchmark completed one paragraph-cleaning operation in approximately 1.12 microseconds. Results can vary based on hardware, Go version, and system activity.
 
+## Building the Executable
+
+Build the macOS command-line executable from the repository root:
+
+```bash
+mkdir -p bin
+go build -o bin/go-wikipedia-crawler .
+```
+Run the executable from the repository root:
+
+```
+./bin/go-wikipedia-crawler
+```
+
 ## GenAI Tools
 I used OpenAI Codex as a programming tutor and review assistant during this project. It helped to:
 

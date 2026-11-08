@@ -6,7 +6,7 @@ A technology firm has decided to use a Go web crawler program to scrape Wikipedi
 
 ## Project Objective
 
-This project is a Go concurrent web crawler and scraper that works with the Colly framework to extract text from Wikipedia articles and export structured data in JSON Lines format. The crawler uses controlled concurrency to process multiple pages while limiting the number of simultaneous requests. 
+This project is a Go concurrent web crawler and scraper that works with the Colly framework to extract text from Wikipedia articles and export structured data in JSON Lines format. The crawler uses controlled concurrency to process multiple pages while limiting the number of simultaneous requests.
 
 ## Development Status
 
@@ -97,6 +97,15 @@ The benchmark uses synthetic HTML and measures citation removal and whitespace n
 ```bash
 go test -bench=BenchmarkCleanParagraph -benchmem -count=5
 ```
+The median result from five runs was:
+
+| Metric | Result |
+|---|---:|
+| Time per operation | 1,119 ns/op |
+| Memory per operation | 1,896 B/op |
+| Allocations per operation | 30 allocs/op |
+
+The benchmark completed one paragraph-cleaning operation in approximately 1.12 microseconds. Results can vary based on hardware, Go version, and system activity.
 
 ## GenAI Tools
 I used OpenAI Codex as a programming tutor and review assistant during this project. It helped to:

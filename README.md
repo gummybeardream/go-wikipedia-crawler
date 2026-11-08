@@ -181,4 +181,6 @@ I reviewed, entered, tested, and revised the project code and documentation. AI-
 
 ## License
 
-The Go source code in this repository is licensed under the MIT License. Extracted Wikipedia content remains subject to Wikipedia's applicable content license and attribution requirements.
+The original Go source code in this repository is licensed under the MIT License. This project uses the Colly web-scraping framework, which is licensed under the Apache License 2.0. Third-party dependencies remain subject to their respective licenses.
+
+Extracted Wikipedia content remains subject to Wikipedia's applicable content license and attribution requirements.

@@ -48,7 +48,7 @@ Run the program:
 go run .
 ```
 
-The generated JSON Lines file is saved at `output/wikipedia_articles.jl`.
+The generated JSON Lines file contains 10 records and is saved at `output/wikipedia_articles.jl`.
 
 ## Testing
 

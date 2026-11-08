@@ -10,7 +10,7 @@ This project is a Go concurrent web crawler and scraper that works with the Coll
 
 ## Development Status
 
-The current version sequentially processes all ten required Wikipedia articles, extracts and cleans their paragraph text, and writes one JSON object per article to a JSON Lines file. Unit tests cover paragraph cleaning and JSON encoding. Logging records crawl activity, failures, output counts, and processing time. Concurrent access is limited to three requests, and race-detector checks found no data races.
+The current version concurrently processes all ten required Wikipedia articles, extracts and cleans their paragraph text, and writes one JSON object per article to a JSON Lines file. Unit tests cover paragraph cleaning and JSON encoding. Logging records crawl activity, failures, output counts, and processing time. Concurrent access is limited to three requests, and race-detector checks found no data races.
 
 ## Concurrency
 
@@ -20,7 +20,7 @@ Because concurrent requests may finish in any order, each result retains its ori
 
 ## Logging
 
-The application writes crawl activity to `logs/crawl.log` and displays the same messages in the terminal. The log records requested URLs, response statuses, successfully scraped articles, failures, output record counts, and sequential crawl time.
+The application writes crawl activity to `logs/crawl.log` and displays the same messages in the terminal. The log records requested URLs, response statuses, successfully scraped articles, failures, output record counts, and concurrent crawl time.
 
 ## Output Format
 
@@ -82,9 +82,9 @@ The sequential crawler successfully processed all ten target pages.
 | Processing mode | Attempted | Successful | Failed | Crawl time |
 |---|---:|---:|---:|---:|
 | Sequential | 10 | 10 | 0 | 1.192 seconds |
-| Concurrent | 10 | 10 | 0 | 0.667 seconds |
+| Concurrent | 10 | 10 | 0 | 0.655 seconds |
 
-In these runs, controlled concurrency reduced crawl time from 1.192 seconds to 0.667 seconds, an approximate speedup of 1.79 times and a time reduction of 44 percent. Results can vary because of network conditions, Wikipedia response times, caching, and normal system activity.
+In these runs, controlled concurrency reduced crawl time from 1.192 seconds to 0.667 seconds, an approximate speedup of 1.82 times and a time reduction of 45 percent. Results can vary because of network conditions, Wikipedia response times, caching, and normal system activity.
 
 ## GenAI Tools
 I used OpenAI Codex as a programming tutor and review assistant during this project. It helped to:

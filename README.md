@@ -50,6 +50,16 @@ go run .
 
 The generated JSON Lines file is saved at `output/wikipedia_articles.jl`.
 
+## Testing
+
+Run the automated unit tests:
+
+```bash
+go test ./...
+```
+
+The unit tests use synthetic data and do not access Wikipedia. They verify paragraph cleaning, whitespace normalization, and JSON Lines encoding.
+
 ## GenAI Tools
 I used OpenAI Codex as a programming tutor and review assistant during this project. It helped to:
 

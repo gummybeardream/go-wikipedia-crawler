@@ -8,11 +8,15 @@ A technology firm has decided to use a Go web crawler program to scrape Wikipedi
 
 This project is a Go concurrent web crawler and scraper that works with the Colly framework to extract text from Wikipedia articles and export structured data in JSON Lines format.
 
-The scraper extracts paragraph text from each article and removes inline citation markers because the reference lists are not included in the output. The source Wikipedia URL is retained for attribution and verification.
+The current implementation processes pages sequentially; controlled concurrent processing will be added after measuring the sequential baseline.
 
 ## Development Status
 
-The current version visits one Wikipedia article, extracts its title and main paragraph text, removes inline citation markers, and writes the result to a JSON Lines file. Support for all ten target pages, automated tests, logging, and concurrent processing will be added in later stages.
+The current version sequentially processes all ten required Wikipedia articles, extracts and cleans their paragraph text, and writes one JSON object per article to a JSON Lines file. Unit tests cover paragraph cleaning and JSON encoding. The application records crawl activity, failures, and sequential processing time. Controlled concurrent processing will be added in the next development stage.
+
+## Logging
+
+The application writes crawl activity to `logs/crawl.log` and displays the same messages in the terminal. The log records requested URLs, response statuses, successfully scraped articles, failures, output record counts, and sequential crawl time.
 
 ## Output Format
 
@@ -59,6 +63,16 @@ go test ./...
 ```
 
 The unit tests use synthetic data and do not access Wikipedia. They verify paragraph cleaning, whitespace normalization, and JSON Lines encoding.
+
+## Performance
+
+The sequential crawler successfully processed all ten target pages.
+
+| Processing mode | Attempted | Successful | Failed | Crawl time |
+|---|---:|---:|---:|---:|
+| Sequential | 10 | 10 | 0 | 1.192 seconds |
+
+Processing time can vary because of network conditions, Wikipedia response times, and caching. The sequential result will be compared with the concurrent implementation.
 
 ## GenAI Tools
 I used OpenAI Codex as a programming tutor and review assistant during this project. It helped to:

@@ -1,0 +1,33 @@
+2026/11/07 22:22:33 starting sequential crawl of 10 URLs
+2026/11/07 22:22:33 visiting https://en.wikipedia.org/wiki/Robotics
+2026/11/07 22:22:34 received status 200 for https://en.wikipedia.org/wiki/Robotics
+2026/11/07 22:22:34 scraped article "Robotics"
+2026/11/07 22:22:34 visiting https://en.wikipedia.org/wiki/Robot
+2026/11/07 22:22:34 received status 200 for https://en.wikipedia.org/wiki/Robot
+2026/11/07 22:22:34 scraped article "Robot"
+2026/11/07 22:22:34 visiting https://en.wikipedia.org/wiki/Reinforcement_learning
+2026/11/07 22:22:34 received status 200 for https://en.wikipedia.org/wiki/Reinforcement_learning
+2026/11/07 22:22:34 scraped article "Reinforcement learning"
+2026/11/07 22:22:34 visiting https://en.wikipedia.org/wiki/Robot_Operating_System
+2026/11/07 22:22:34 received status 200 for https://en.wikipedia.org/wiki/Robot_Operating_System
+2026/11/07 22:22:34 scraped article "Robot Operating System"
+2026/11/07 22:22:34 visiting https://en.wikipedia.org/wiki/Intelligent_agent
+2026/11/07 22:22:34 received status 200 for https://en.wikipedia.org/wiki/Intelligent_agent
+2026/11/07 22:22:34 scraped article "Intelligent agent"
+2026/11/07 22:22:34 visiting https://en.wikipedia.org/wiki/Software_agent
+2026/11/07 22:22:34 received status 200 for https://en.wikipedia.org/wiki/Software_agent
+2026/11/07 22:22:34 scraped article "Software agent"
+2026/11/07 22:22:34 visiting https://en.wikipedia.org/wiki/Robotic_process_automation
+2026/11/07 22:22:34 received status 200 for https://en.wikipedia.org/wiki/Robotic_process_automation
+2026/11/07 22:22:34 scraped article "Robotic process automation"
+2026/11/07 22:22:34 visiting https://en.wikipedia.org/wiki/Chatbot
+2026/11/07 22:22:34 received status 200 for https://en.wikipedia.org/wiki/Chatbot
+2026/11/07 22:22:34 scraped article "Chatbot"
+2026/11/07 22:22:34 visiting https://en.wikipedia.org/wiki/Applications_of_artificial_intelligence
+2026/11/07 22:22:34 received status 200 for https://en.wikipedia.org/wiki/Applications_of_artificial_intelligence
+2026/11/07 22:22:34 scraped article "Applications of artificial intelligence"
+2026/11/07 22:22:34 visiting https://en.wikipedia.org/wiki/Android_(robot)
+2026/11/07 22:22:34 received status 200 for https://en.wikipedia.org/wiki/Android_(robot)
+2026/11/07 22:22:34 scraped article "Android (robot)"
+2026/11/07 22:22:34 wrote 10 of 10 articles to output/wikipedia_articles.jl
+2026/11/07 22:22:34 sequential crawl complete: 10 succeeded, 0 failed, crawl time 1.192070333s
